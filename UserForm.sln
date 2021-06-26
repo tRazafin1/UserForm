@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserForm", "UserForm\UserForm.csproj", "{26C0646E-F7C1-416F-B82B-5C9E75CB1700}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{26C0646E-F7C1-416F-B82B-5C9E75CB1700}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26C0646E-F7C1-416F-B82B-5C9E75CB1700}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26C0646E-F7C1-416F-B82B-5C9E75CB1700}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26C0646E-F7C1-416F-B82B-5C9E75CB1700}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {50F123E6-65E0-40BA-99CA-16AA7471D28F}
+	EndGlobalSection
+EndGlobal
