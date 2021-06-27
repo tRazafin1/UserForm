@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Workstation\\C#\\UserForm\\UserForm\\UserForm.csproj": {}
+    "C:\\VSWorkplace\\C#\\UserForm\\UserForm\\UserForm.csproj": {}
   },
   "projects": {
-    "C:\\Workstation\\C#\\UserForm\\UserForm\\UserForm.csproj": {
+    "C:\\VSWorkplace\\C#\\UserForm\\UserForm\\UserForm.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Workstation\\C#\\UserForm\\UserForm\\UserForm.csproj",
+        "projectUniqueName": "C:\\VSWorkplace\\C#\\UserForm\\UserForm\\UserForm.csproj",
         "projectName": "UserForm",
-        "projectPath": "C:\\Workstation\\C#\\UserForm\\UserForm\\UserForm.csproj",
-        "packagesPath": "C:\\Users\\tRazafin\\.nuget\\packages\\",
-        "outputPath": "C:\\Workstation\\C#\\UserForm\\UserForm\\obj\\",
+        "projectPath": "C:\\VSWorkplace\\C#\\UserForm\\UserForm\\UserForm.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\VSWorkplace\\C#\\UserForm\\UserForm\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\tRazafin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -60,7 +57,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
         }
       }
     }

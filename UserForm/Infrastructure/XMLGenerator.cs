@@ -6,20 +6,31 @@ using System.Xml;
 
 namespace UserForm.Infrastructure
 {
-    public static class XMLGenerator
+    public class XMLGenerator
     {
-        public static void Create()
+        public XMLGenerator()
         {
-            XmlDocument document = new XmlDocument();
-            XmlElement root = document.CreateElement("USERS");
-            document.AppendChild(root);
-            document.Save(@"C:\Workstation\C#\UserForm\UserForm\Users.xml");
+            this.Create();
         }
 
-        public static void AddChild(object childAttributes, string childName = "USER")
+        private void Create()
         {
             XmlDocument document = new XmlDocument();
-            document.Load(@"C:\Workstation\C#\UserForm\UserForm\Users.xml");
+            document.Load(@"C:\VSWorkplace\C#\UserForm\UserForm\Users.xml");
+            XmlNode existingRoot = document.SelectSingleNode("USERS");
+
+            if (existingRoot == null)
+            {
+                XmlElement root = document.CreateElement("USERS");
+                document.AppendChild(root);
+            }
+            document.Save(@"C:\VSWorkplace\C#\UserForm\UserForm\Users.xml");
+        }
+
+        public void AddChild(object childAttributes, string childName = "USER")
+        {
+            XmlDocument document = new XmlDocument();
+            document.Load(@"C:\VSWorkplace\C#\UserForm\UserForm\Users.xml");
             XmlNode root = document.SelectSingleNode("USERS");
             XmlElement child = document.CreateElement(childName);
 
@@ -31,12 +42,49 @@ namespace UserForm.Infrastructure
             foreach (var property in propertyList)
             {
                 XmlAttribute attribute = document.CreateAttribute(property.Name);
-                attribute.Value = property.GetValue(childAttributes).ToString();
+                attribute.Value = property.GetValue(childAttributes)?.ToString();
                 child.Attributes.Append(attribute);
             }
 
             root.AppendChild(child);
-            document.Save(@"C:\Workstation\C#\UserForm\UserForm\Users.xml");
+            document.Save(@"C:\VSWorkplace\C#\UserForm\UserForm\Users.xml");
+        }
+
+        public List<UserForm.Models.Users> GetChildren(string childName = "USER")
+        {
+            XmlDocument document = new XmlDocument();
+            document.Load(@"C:\VSWorkplace\C#\UserForm\UserForm\Users.xml");
+            XmlNode root = document.SelectSingleNode("USERS");
+            XmlNodeList users = document.SelectNodes($"USERS/{childName}");
+            List<UserForm.Models.Users> _arr = new List<UserForm.Models.Users>();
+
+            foreach( XmlNode user in users )
+            {
+                Models.Users u = new Models.Users();
+                u.FName = user.Attributes["FName"].Value;
+                u.LName = user.Attributes["LName"].Value;
+                u.Number = user.Attributes["Number"].Value;
+                u.id = user.Attributes["ID"].Value;
+
+                _arr.Add(u);
+            }
+
+
+            return _arr;
+        }
+
+        public void RemoveChild(string id, string childName = "USER")
+        {
+            XmlDocument document = new XmlDocument();
+            document.Load(@"C:\VSWorkplace\C#\UserForm\UserForm\Users.xml");
+            XmlNode root = document.SelectSingleNode("USERS");
+            XmlNodeList user = document.SelectNodes($"USERS/{childName}[@ID='{id}']");
+            
+            foreach(XmlNode x in user)
+            {
+                root.RemoveChild(x);
+            }
+            document.Save(@"C:\VSWorkplace\C#\UserForm\UserForm\Users.xml");
         }
     }
 }
