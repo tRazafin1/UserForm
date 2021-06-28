@@ -16,7 +16,14 @@ namespace UserForm.Infrastructure
         private void Create()
         {
             XmlDocument document = new XmlDocument();
-            document.Load(@"..\Users.xml");
+            try
+            {
+                document.Load(@"..\Users.xml");
+            }
+            catch (Exception e)
+            {
+
+            }
             XmlNode existingRoot = document.SelectSingleNode("USERS");
 
             if (existingRoot == null)
