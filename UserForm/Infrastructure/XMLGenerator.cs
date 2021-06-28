@@ -50,6 +50,25 @@ namespace UserForm.Infrastructure
             document.Save(@"C:\VSWorkplace\C#\UserForm\UserForm\Users.xml");
         }
 
+        public void UpdateChild(object childAttributes, string childName = "USER")
+        {
+            XmlDocument document = new XmlDocument();
+            document.Load(@"C:\VSWorkplace\C#\UserForm\UserForm\Users.xml");
+            string query = $"USERS/{childName}[@ID='{childAttributes.GetType().GetProperty("id").GetValue(childAttributes)?.ToString()}']";
+            XmlNodeList children = document.SelectNodes(query);
+
+            foreach (XmlNode child in children)
+            {
+                var propertyList = childAttributes.GetType().GetProperties();
+                foreach (var property in propertyList)
+                {
+                    child.Attributes[property.Name].Value = property.GetValue(childAttributes)?.ToString();
+                    ((XmlElement)child).SetAttribute(property.Name, property.GetValue(childAttributes)?.ToString());
+                }
+            }
+            document.Save(@"C:\VSWorkplace\C#\UserForm\UserForm\Users.xml");
+        }
+
         public List<UserForm.Models.Users> GetChildren(string childName = "USER")
         {
             XmlDocument document = new XmlDocument();

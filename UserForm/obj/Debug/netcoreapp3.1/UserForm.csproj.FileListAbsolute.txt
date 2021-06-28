@@ -37,3 +37,4 @@ C:\VSWorkplace\C#\UserForm\UserForm\obj\Debug\netcoreapp3.1\UserForm.genruntimec
 C:\VSWorkplace\C#\UserForm\UserForm\obj\Debug\netcoreapp3.1\UserForm.csproj.CopyComplete
 C:\VSWorkplace\C#\UserForm\UserForm\obj\Debug\netcoreapp3.1\UserForm.csproj.AssemblyReference.cache
 C:\VSWorkplace\C#\UserForm\UserForm\obj\Debug\netcoreapp3.1\Razor\Views\User\List.cshtml.g.cs
+C:\VSWorkplace\C#\UserForm\UserForm\obj\Debug\netcoreapp3.1\Razor\Views\User\Edit.cshtml.g.cs

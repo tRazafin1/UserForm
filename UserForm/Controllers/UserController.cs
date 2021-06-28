@@ -47,6 +47,25 @@ namespace UserForm.Controllers
             }
             List<Users> USERS = _XML.GetChildren();
             return View("List", USERS);
-        }  
+        }
+
+        public ActionResult Edit(string Id)
+        {
+            List<Users> USERS = _XML.GetChildren();
+            var std = USERS.Where(s => s.id == Id).FirstOrDefault();
+
+            return View(std);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Users obj)
+        {
+            if (ModelState.IsValid)
+            {
+                _XML.UpdateChild(obj);
+            }
+            List<Users> USERS = _XML.GetChildren();
+            return View("List", USERS);
+        }
     }
 }

@@ -1,0 +1,25 @@
+﻿@model UserForm.Models.Users
+
+<div>
+    @using (Html.BeginForm("Edit", "User", FormMethod.Post))
+    {
+
+        <h1 class="text-center">User Details</h1>
+        <div class="form-group">
+            <label for="FName">First name</label>
+            @Html.TextBoxFor(m => m.FName, new { @class = "form-control", @id = "FName" })
+        </div>
+        <div class="form-group">
+            <label for="LName">Last name</label>
+            @Html.TextBoxFor(m => m.LName, new { @class = "form-control", @id = "LName" })
+        </div>
+        <div class="form-group">
+            <label for="Number">Number</label>
+            @Html.TextBoxFor(m => m.Number, new { @class = "form-control", @id = "Number" })
+        </div>
+        @Html.HiddenFor(m => m.id)
+        <button type="submit" class="btn btn-primary">
+            SAVE
+        </button>
+    }
+</div>
