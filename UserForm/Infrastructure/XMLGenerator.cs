@@ -16,7 +16,7 @@ namespace UserForm.Infrastructure
         private void Create()
         {
             XmlDocument document = new XmlDocument();
-            document.Load(@"C:\VSWorkplace\C#\UserForm\UserForm\Users.xml");
+            document.Load(@"..\Users.xml");
             XmlNode existingRoot = document.SelectSingleNode("USERS");
 
             if (existingRoot == null)
@@ -24,19 +24,26 @@ namespace UserForm.Infrastructure
                 XmlElement root = document.CreateElement("USERS");
                 document.AppendChild(root);
             }
-            document.Save(@"C:\VSWorkplace\C#\UserForm\UserForm\Users.xml");
+            document.Save(@"..\Users.xml");
         }
 
         public void AddChild(object childAttributes, string childName = "USER")
         {
             XmlDocument document = new XmlDocument();
-            document.Load(@"C:\VSWorkplace\C#\UserForm\UserForm\Users.xml");
+            document.Load(@"..\Users.xml");
             XmlNode root = document.SelectSingleNode("USERS");
             XmlElement child = document.CreateElement(childName);
 
             var propertyList = childAttributes.GetType().GetProperties();
             XmlAttribute id = document.CreateAttribute("ID");
-            id.Value = document.SelectNodes($"USERS/{childName}").Count.ToString();
+            int lastID = 0;
+            try
+            {
+                lastID = Int32.Parse(root.LastChild?.Attributes["ID"].Value);
+            }
+            catch (Exception e) { }
+            lastID++;
+            id.Value = lastID.ToString();
             child.Attributes.Append(id);
 
             foreach (var property in propertyList)
@@ -47,13 +54,13 @@ namespace UserForm.Infrastructure
             }
 
             root.AppendChild(child);
-            document.Save(@"C:\VSWorkplace\C#\UserForm\UserForm\Users.xml");
+            document.Save(@"..\Users.xml");
         }
 
         public void UpdateChild(object childAttributes, string childName = "USER")
         {
             XmlDocument document = new XmlDocument();
-            document.Load(@"C:\VSWorkplace\C#\UserForm\UserForm\Users.xml");
+            document.Load(@"..\Users.xml");
             string query = $"USERS/{childName}[@ID='{childAttributes.GetType().GetProperty("id").GetValue(childAttributes)?.ToString()}']";
             XmlNodeList children = document.SelectNodes(query);
 
@@ -66,13 +73,13 @@ namespace UserForm.Infrastructure
                     ((XmlElement)child).SetAttribute(property.Name, property.GetValue(childAttributes)?.ToString());
                 }
             }
-            document.Save(@"C:\VSWorkplace\C#\UserForm\UserForm\Users.xml");
+            document.Save(@"..\Users.xml");
         }
 
         public List<UserForm.Models.Users> GetChildren(string childName = "USER")
         {
             XmlDocument document = new XmlDocument();
-            document.Load(@"C:\VSWorkplace\C#\UserForm\UserForm\Users.xml");
+            document.Load(@"..\Users.xml");
             XmlNode root = document.SelectSingleNode("USERS");
             XmlNodeList users = document.SelectNodes($"USERS/{childName}");
             List<UserForm.Models.Users> _arr = new List<UserForm.Models.Users>();
@@ -95,7 +102,7 @@ namespace UserForm.Infrastructure
         public void RemoveChild(string id, string childName = "USER")
         {
             XmlDocument document = new XmlDocument();
-            document.Load(@"C:\VSWorkplace\C#\UserForm\UserForm\Users.xml");
+            document.Load(@"..\Users.xml");
             XmlNode root = document.SelectSingleNode("USERS");
             XmlNodeList user = document.SelectNodes($"USERS/{childName}[@ID='{id}']");
             
@@ -103,7 +110,7 @@ namespace UserForm.Infrastructure
             {
                 root.RemoveChild(x);
             }
-            document.Save(@"C:\VSWorkplace\C#\UserForm\UserForm\Users.xml");
+            document.Save(@"..\Users.xml");
         }
     }
 }
